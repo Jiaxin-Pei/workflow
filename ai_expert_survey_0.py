@@ -40,7 +40,7 @@ else:
     raise ValueError("Invalid mode. Please set the mode to 'dev', 'prod' or 'expert' in the secrets.toml file.")
 
 # LOAD the O*NET Task Dataset
-task_data = pd.read_csv("expert_task_0_ratings.csv")
+task_data = pd.read_csv("expert_task_0_rating.csv")
 title_list = task_data['Title'].drop_duplicates().values.tolist()
 industry_to_title_table = pd.read_csv("updated_occupation_categories.csv")
 occupation_descriptions = pd.read_csv("gpt_occupation_descriptions.csv")
@@ -52,7 +52,7 @@ industry_list = industry_to_title_table['Industry'].drop_duplicates().tolist()
 industry_list.append('Other')
 
 all_tasks_list = task_data['Task'].to_list()
-NUM_TASKS_TO_RANK = 100
+NUM_TASKS_TO_RANK = 50
 
 
 
@@ -150,19 +150,32 @@ def get_task_list():
 
     # 0 is for testing
     # note: NUM_TASKS_TO_RANK is 320
-    id_to_indices = {'test': (0, NUM_TASKS_TO_RANK), '1a': (0, NUM_TASKS_TO_RANK),
-                     '1b': (0, NUM_TASKS_TO_RANK),
-                     '2a': (NUM_TASKS_TO_RANK, NUM_TASKS_TO_RANK * 2),
-                     '2b': (NUM_TASKS_TO_RANK, NUM_TASKS_TO_RANK * 2),
-                     '3a': (NUM_TASKS_TO_RANK * 2, NUM_TASKS_TO_RANK * 3),
-                     '3b': (NUM_TASKS_TO_RANK * 2, NUM_TASKS_TO_RANK * 3),
-                     '4a': (NUM_TASKS_TO_RANK * 3, NUM_TASKS_TO_RANK * 4),
-                     '4b': (NUM_TASKS_TO_RANK * 3, NUM_TASKS_TO_RANK * 4),
-                     '5a': (NUM_TASKS_TO_RANK * 4, NUM_TASKS_TO_RANK * 5),
-                     '5b': (NUM_TASKS_TO_RANK * 4, NUM_TASKS_TO_RANK * 5),
-                     # 120 workflows
-                     '6a': (NUM_TASKS_TO_RANK * 5, len(all_tasks_list)),
-                     '6b': (NUM_TASKS_TO_RANK * 5, len(all_tasks_list))}
+    id_to_indices = {'test': (0, NUM_TASKS_TO_RANK), '50_a': (0, NUM_TASKS_TO_RANK),
+                     '50_b': (0, NUM_TASKS_TO_RANK),
+                     '100_a': (NUM_TASKS_TO_RANK, NUM_TASKS_TO_RANK * 2),
+                     '100_b': (NUM_TASKS_TO_RANK, NUM_TASKS_TO_RANK * 2),
+                     '150_a': (NUM_TASKS_TO_RANK * 2, NUM_TASKS_TO_RANK * 3),
+                     '150_b': (NUM_TASKS_TO_RANK * 2, NUM_TASKS_TO_RANK * 3),
+                     '200_a': (NUM_TASKS_TO_RANK * 3, NUM_TASKS_TO_RANK * 4),
+                     '200_b': (NUM_TASKS_TO_RANK * 3, NUM_TASKS_TO_RANK * 4),
+                     '250_a': (NUM_TASKS_TO_RANK * 4, NUM_TASKS_TO_RANK * 5),
+                     '250_b': (NUM_TASKS_TO_RANK * 4, NUM_TASKS_TO_RANK * 5),
+                     '300_a': (NUM_TASKS_TO_RANK * 5, NUM_TASKS_TO_RANK * 6),
+                     '300_b': (NUM_TASKS_TO_RANK * 5, NUM_TASKS_TO_RANK * 6),
+                     '350_a': (NUM_TASKS_TO_RANK * 6, NUM_TASKS_TO_RANK * 7),
+                     '350_b': (NUM_TASKS_TO_RANK * 6, NUM_TASKS_TO_RANK * 7),
+                     '400_a': (NUM_TASKS_TO_RANK * 7, NUM_TASKS_TO_RANK * 8),
+                     '400_b': (NUM_TASKS_TO_RANK * 7, NUM_TASKS_TO_RANK * 8),
+                     '450_a': (NUM_TASKS_TO_RANK * 8, NUM_TASKS_TO_RANK * 9),
+                     '450_b': (NUM_TASKS_TO_RANK * 8, NUM_TASKS_TO_RANK * 9),
+                     '500_a': (NUM_TASKS_TO_RANK * 9, NUM_TASKS_TO_RANK * 10),
+                     '500_b': (NUM_TASKS_TO_RANK * 9, NUM_TASKS_TO_RANK * 10),
+                     '550_a': (NUM_TASKS_TO_RANK * 10, NUM_TASKS_TO_RANK * 11),
+                     '550_b': (NUM_TASKS_TO_RANK * 10, NUM_TASKS_TO_RANK * 11),
+                     '600_a': (NUM_TASKS_TO_RANK * 11, NUM_TASKS_TO_RANK * 12),
+                     '600_b': (NUM_TASKS_TO_RANK * 11, NUM_TASKS_TO_RANK * 12),                    
+                     '650_a': (NUM_TASKS_TO_RANK * 12, len(all_tasks_list)),
+                     '650_b': (NUM_TASKS_TO_RANK * 12, len(all_tasks_list))}
 
     start_index, end_index = id_to_indices[id]
     all_tasks = set(all_tasks_list[start_index:end_index])

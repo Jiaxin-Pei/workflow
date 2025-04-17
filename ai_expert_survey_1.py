@@ -40,7 +40,7 @@ else:
     raise ValueError("Invalid mode. Please set the mode to 'dev', 'prod' or 'expert' in the secrets.toml file.")
 
 # LOAD the O*NET Task Dataset
-task_data = pd.read_csv("expert_task_1_ratings.csv")
+task_data = pd.read_csv("expert_task_1_rating.csv")
 title_list = task_data['Title'].drop_duplicates().values.tolist()
 industry_to_title_table = pd.read_csv("updated_occupation_categories.csv")
 occupation_descriptions = pd.read_csv("gpt_occupation_descriptions.csv")
@@ -52,7 +52,7 @@ industry_list = industry_to_title_table['Industry'].drop_duplicates().tolist()
 industry_list.append('Other')
 
 all_tasks_list = task_data['Task'].to_list()
-NUM_TASKS_TO_RANK = 100
+NUM_TASKS_TO_RANK = 50
 
 
 
@@ -150,11 +150,16 @@ def get_task_list():
 
     # 0 is for testing
     # note: NUM_TASKS_TO_RANK is 320
-    id_to_indices = {'test': (0, NUM_TASKS_TO_RANK), '1c': (0, NUM_TASKS_TO_RANK),
-                     '2c': (NUM_TASKS_TO_RANK, NUM_TASKS_TO_RANK * 2),
-                     '3c': (NUM_TASKS_TO_RANK * 2, NUM_TASKS_TO_RANK * 3),
-                     '4c': (NUM_TASKS_TO_RANK * 3, NUM_TASKS_TO_RANK * 4),
-                     '5c': (NUM_TASKS_TO_RANK * 4, len(all_tasks_list))}
+    id_to_indices = {'test': (0, NUM_TASKS_TO_RANK), '50': (0, NUM_TASKS_TO_RANK),
+                     '100': (NUM_TASKS_TO_RANK, NUM_TASKS_TO_RANK * 2),
+                     '150': (NUM_TASKS_TO_RANK * 2, NUM_TASKS_TO_RANK * 3),
+                     '200': (NUM_TASKS_TO_RANK * 3, NUM_TASKS_TO_RANK * 4),
+                     '250': (NUM_TASKS_TO_RANK * 4, NUM_TASKS_TO_RANK * 5),
+                     '300': (NUM_TASKS_TO_RANK * 5, NUM_TASKS_TO_RANK * 6),
+                     '350': (NUM_TASKS_TO_RANK * 6, NUM_TASKS_TO_RANK * 7),
+                     '400': (NUM_TASKS_TO_RANK * 7, NUM_TASKS_TO_RANK * 8),
+                     '450': (NUM_TASKS_TO_RANK * 8, NUM_TASKS_TO_RANK * 9),
+                     '500': (NUM_TASKS_TO_RANK * 9, len(all_tasks_list))}
 
     start_index, end_index = id_to_indices[id]
     all_tasks = set(all_tasks_list[start_index:end_index])
