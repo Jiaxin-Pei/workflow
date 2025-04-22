@@ -201,8 +201,8 @@ def consent_page():
                 "Stanford University studying Artificial Intelligence</strong>, and your insights are invaluable "
                 "to us. By sharing your unique thoughts, you’ll help us better understand how to develop AI agents "
                 "that effectively support human work.</p>", unsafe_allow_html=True)
-    st.markdown("<p style='font-size:20px'>⌛ In this survey, we will show you about 300 tasks and ask a few questions about each one."
-                "You can stop and restart at any time, and the survey will save your progress. This survey will take approximately 4 hours,"
+    st.markdown("<p style='font-size:20px'>⌛ In this survey, we will show you about 50 tasks and ask a few questions about each one."
+                "You can stop and restart at any time, and the survey will save your progress. This survey will take approximately 1 hour,"
                 "and please complete it by the end of April.</p>",
                 unsafe_allow_html=True)
     st.markdown("<p style='font-size:20px'>🔒 This study is not affiliated with any companies or government agencies, "
