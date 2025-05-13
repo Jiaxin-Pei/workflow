@@ -267,8 +267,12 @@ def task_survey():
         st.divider()
         st.subheader("Occupation and Task Summaries")
         # retrieve occupation summary
-        occ_description = occupation_descriptions.loc[occupation_descriptions['Title'] == relevant_title]['Description'].tolist()[0]
-        task_description = task_descriptions.loc[task_descriptions['Task'] == current_task]['Description'].tolist()[0]
+        try:
+            occ_description = occupation_descriptions.loc[occupation_descriptions['Title'] == relevant_title]['Description'].tolist()[0]
+            task_description = task_descriptions.loc[task_descriptions['Task'] == current_task]['Description'].tolist()[0]
+        except:
+            occ_description = ""
+            task_description = ""
 
         with st.expander(f"Occupation Description", expanded=False):
             st.write(f"This task is performed by **{relevant_title}**. To assist you, here is their job description:")
